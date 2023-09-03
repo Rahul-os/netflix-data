@@ -53,8 +53,6 @@ public class NetflixController {
 
 	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-
-
 	}
 
 	@DeleteMapping("/deleteByTitle/{title}")
