@@ -9,7 +9,7 @@ public interface NetflixService {
 	
 
 
-	NetflixData saveNetflixData(NetflixData eachrow);
+	NetflixData saveNetflixData(NetflixData newdata);
 
 	NetflixData updateNetflixData(String title , NetflixData newData);
 
@@ -18,4 +18,6 @@ public interface NetflixService {
 	void deleteMovieAndShowData(String title);
 
 	List<NetflixData> getAllRecords();
+
+	void saveAllRecordsInCsvFileAtOnce(List<NetflixData> netflixDataList);
 }

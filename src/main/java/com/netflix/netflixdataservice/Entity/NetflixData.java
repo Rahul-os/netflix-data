@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 @Getter
 @Setter
-@Document
+@Document("netflix")     // it specifies that a collection with name "netflix" will be created in mongodb.
 public class NetflixData {
 
 	@Id

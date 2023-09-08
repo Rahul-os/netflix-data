@@ -22,18 +22,20 @@ public class ImportDataFromCSVController {
 	NetflixService netflixService;
 
 	List<NetflixData> netflixDataList = new ArrayList<>();
+
 	@RequestMapping(value = "/importDataFromCsvFile" , method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
 	public List<NetflixData> importDataFromCSVFile(@RequestParam("csvFile") MultipartFile file) throws Exception {
 		try {
-			File tempFile = File.createTempFile("temp",null);
+			File tempFile = File.createTempFile("temp",null); //I created this temp file bcz, when i am calling the importNetflixDataFromCSV() method i need to pass the location of the file that i want to import, when i passed the file directly i got an error since i passed the entire file.
 
 			file.transferTo(tempFile);
 			netflixDataList = csvDataService.importNetflixDataFromCSV(tempFile.getAbsolutePath());
-			for (NetflixData eachrow : netflixDataList)
-				netflixService.saveNetflixData(eachrow);
+//			for (NetflixData eachrow : netflixDataList)
+//				netflixService.saveNetflixData(eachrow);   // takes more time, since each row is being saved individually.
 
-		}
-		catch (Exception e){
+			netflixService.saveAllRecordsInCsvFileAtOnce(netflixDataList);
+
+		} catch (Exception e){
 			System.out.println(e);
 		}
 		if(!netflixDataList.isEmpty())

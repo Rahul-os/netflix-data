@@ -56,11 +56,19 @@ public class NetflixController {
 	}
 
 	@DeleteMapping("/deleteByTitle/{title}")
-	public ResponseEntity<String> deleteNetflixDataByTitle(@RequestParam String title) {
-		if(!service.findByTitle(title).isEmpty()) {
-			service.deleteMovieAndShowData(title);
-			return new ResponseEntity<>("The movie/show with given title " + title + " is deleted", HttpStatus.OK);
-		} else
+	public ResponseEntity<String> deleteNetflixDataByTitle(@PathVariable String title) {
+		Optional<List<NetflixData>> data = service.findByTitle(title);
+		if(data.isPresent()){				// since I used Optional<List<NetflixData>> , i am checking if the data is present and then get the data , and check if it is not empty.
+			List<NetflixData> list = data.get();
+			if(!list.isEmpty()) {
+				service.deleteMovieAndShowData(title);
+				return new ResponseEntity<>("The movie/show with given title " + title + " is deleted", HttpStatus.OK);
+			}
+			else
+				return new ResponseEntity<>("!!!There is no movie / show with the entered title. Please enter correct title to delete the data!!!", HttpStatus.NOT_FOUND);
+
+		}
+		else
 			return new ResponseEntity<>("!!!There is no movie / show with the entered title. Please enter correct title to delete the data!!!", HttpStatus.NOT_FOUND);
 	}
 

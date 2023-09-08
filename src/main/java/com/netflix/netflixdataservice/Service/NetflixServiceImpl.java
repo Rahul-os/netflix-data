@@ -17,8 +17,8 @@ public class NetflixServiceImpl implements NetflixService{
 
 
 	@Override
-	public NetflixData saveNetflixData(NetflixData eachrow) {
-		return repo.save(eachrow);
+	public NetflixData saveNetflixData(NetflixData newdata) {
+		return repo.save(newdata);
 	}
 
 	@Override
@@ -45,14 +45,19 @@ public class NetflixServiceImpl implements NetflixService{
 
 	@Override
 	public void deleteMovieAndShowData(String title) {
-		NetflixData recordToBeDeleted = repo.deleteDataByTitle(title);  //we can also delete multiple movies which are having the same name by using List<> and then itearte and delete allof them.
+		List<NetflixData> recordToBeDeleted = repo.deleteDataByTitle(title);  //we can also delete multiple movies which are having the same name by using List<> and then itearte and delete allof them.
 		if(recordToBeDeleted != null)
-			repo.delete(recordToBeDeleted);
+			repo.deleteAll(recordToBeDeleted); // found that Taxi Driver has multiple items so used deleteAll .
 
 	}
 
 	@Override
 	public List<NetflixData> getAllRecords() {
 		return repo.findAll();
+	}
+
+	@Override
+	public void saveAllRecordsInCsvFileAtOnce(List<NetflixData> netflixDataList) {
+		repo.saveAll(netflixDataList);
 	}
 }

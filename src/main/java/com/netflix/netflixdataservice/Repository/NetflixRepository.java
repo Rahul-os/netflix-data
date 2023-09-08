@@ -17,5 +17,5 @@ public interface NetflixRepository extends MongoRepository<NetflixData, String> 
     Optional<List<NetflixData>> findByTitle(String title);
 
     @Query("{'title':?0}")
-    NetflixData deleteDataByTitle(String title);
+    List<NetflixData> deleteDataByTitle(String title);
 }
