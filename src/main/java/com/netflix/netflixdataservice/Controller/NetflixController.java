@@ -20,7 +20,7 @@ import java.util.Optional;
 public class NetflixController {
 
 	@Autowired
-	NetflixService service;
+	public NetflixService service ;
 
 	@RequestMapping(value = "/insertData" , method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NetflixData> insertNetflixData(@RequestBody NetflixData data) {
