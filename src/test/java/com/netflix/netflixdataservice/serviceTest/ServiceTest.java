@@ -52,7 +52,7 @@ public class ServiceTest {
     @Test
     public void givenTitle_whenFindByTitle_thenReturnNetflixDataObject()
     {
-        String title = "Fast and Furious2";
+        String title = "Fast and Furious";
         service.findByTitle(title);
         when(repository.findByTitle(title)).thenReturn(Optional.of(List.of(newData)));
         Assertions.assertNotNull(newData);
