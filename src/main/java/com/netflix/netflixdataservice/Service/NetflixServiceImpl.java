@@ -15,6 +15,7 @@ public class NetflixServiceImpl implements NetflixService{
 	@Autowired
 	NetflixRepository repo;
 
+	int countA = 0,countB=0,countc=0,countd=0,counte=0;
 
 	@Override
 	public NetflixData saveNetflixData(NetflixData newdata) {
@@ -60,4 +61,22 @@ public class NetflixServiceImpl implements NetflixService{
 	public void saveAllRecordsInCsvFileAtOnce(List<NetflixData> netflixDataList) {
 		repo.saveAll(netflixDataList);
 	}
+
+//	@Override
+//	public int checkTheCountOfTile(List<NetflixData> eachrecord) {
+//
+//		for(NetflixData eachRecord1 : eachrecord) {
+//			if(eachRecord1.getTitle().startsWith(String.valueOf('A')))
+//				countA++;
+//			else if (eachRecord1.getTitle().startsWith(String.valueOf('B'))) {
+//				countB++;
+//			}
+//			else if(eachRecord1.getTitle().startsWith(String.valueOf('C')))
+//				countc++;
+//			else if(eachRecord1.getTitle().startsWith(String.valueOf('D')))
+//				countd++;
+//			else if(eachRecord1.getTitle().startsWith(String.valueOf('E')))
+//				counte++;
+//		}
+//	}
 }

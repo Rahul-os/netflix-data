@@ -26,6 +26,7 @@ public class ImportDataFromCSVController {
 	@RequestMapping(value = "/importDataFromCsvFile" , method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
 	public List<NetflixData> importDataFromCSVFile(@RequestParam("csvFile") MultipartFile file) throws Exception {
 		try {
+			//public static File createTempFile(String PREFIX, String SUFFIX)
 			File tempFile = File.createTempFile("temp",null); //I created this temp file bcz, when i am calling the importNetflixDataFromCSV() method i need to pass the location of the file that i want to import, when i passed the file directly i got an error since i passed the entire file.
 
 			file.transferTo(tempFile);

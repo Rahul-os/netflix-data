@@ -20,4 +20,6 @@ public interface NetflixService {
 	List<NetflixData> getAllRecords();
 
 	void saveAllRecordsInCsvFileAtOnce(List<NetflixData> netflixDataList);
+
+//	int checkTheCountOfTile(List<NetflixData> eachrecord);
 }

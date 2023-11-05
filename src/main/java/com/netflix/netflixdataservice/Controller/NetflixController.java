@@ -80,4 +80,16 @@ public class NetflixController {
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-}
+
+//	@GetMapping("/alphbets")
+//	public ResponseEntity<> showTabularList(NetflixData data)
+//	{
+//		List<NetflixData> listOfRecords= service.getAllRecords();  // gets al the records
+////		for(NetflixData eachrecord : listOfRecords)
+////		{
+////			service.checkTheCountOfTile(eachrecord);
+////		}
+//		service.checkTheCountOfTile(listOfRecords);
+//
+	}
+//}

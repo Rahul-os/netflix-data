@@ -29,7 +29,7 @@ public class ServiceTest {
 
     NetflixData newData = new NetflixData("100","18","above 18 years can watch", Collections.EMPTY_LIST,Collections.EMPTY_LIST,2018,140,"Fast and Furious","Thriller",8.5);
 
-    NetflixData updateNetflixData ;
+
 
 
 
@@ -41,13 +41,19 @@ public class ServiceTest {
         Assertions.assertTrue(!newData.getId().isEmpty());
     }
 
-//    @Test
-//    public void givenUpdatedData_whenUpdate_thenSaveUpdatedData()
-//    {
-//        service.updateNetflixData("Fast and Furious2" , updateNetflixData);
-//        when(repository.updateByTitle("Fast and Furious2")).thenReturn(updateNetflixData);
-//
-//    }
+    @Test
+    public void givenUpdatedData_whenUpdate_thenSaveUpdatedData()
+    {
+        NetflixData updateNetflixData = new NetflixData() ;
+        updateNetflixData.setTitle("Fast and Furious");
+        updateNetflixData.setRuntime(125);
+        updateNetflixData.setDescription("Anyone can watch!!");
+        updateNetflixData.setImdb_score(8.0);
+        when(repository.updateByTitle("Fast and Furious")).thenReturn(updateNetflixData);
+        NetflixData result  = service.updateNetflixData("Fast and Furious" , updateNetflixData);
+        Assertions.assertTrue(Boolean.parseBoolean(updateNetflixData.description), result.getDescription());
+
+    }
 
     @Test
     public void givenTitle_whenFindByTitle_thenReturnNetflixDataObject()
